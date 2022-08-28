@@ -3,8 +3,8 @@ import { View,Text } from "react-native";
 
 export default function Forecast(props) {
   return (
-    <View>
-      <Text>{props.main}</Text>
+    <View  style={{alignItems: "center" }}>
+      <Text >  Province:{props.main} </Text>
       <Text>{props.description}</Text>
       <View>
         <Text>{props.temp}</Text>
