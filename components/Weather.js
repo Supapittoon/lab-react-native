@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, ImageBackground, StyleSheet, View } from "react-native";
 import Forecast from "./Forecast";
 
@@ -13,9 +13,12 @@ export default function Weather(props) {
         .then((response) => response.json())
         .then((json) => {
           setForecastInfo({
+            name: json.name,
             main: json.weather[0].main,
-            description: json.weather[0].description,
             temp: json.main.temp,
+            country: json.sys.country,
+            humidity: json.main.humidity,
+            pressure: json.main.pressure,
           });
         })
         .catch((error) => {
@@ -24,9 +27,12 @@ export default function Weather(props) {
     }
   }, [props.zipCode]);
   const [forecastInfo, setForecastInfo] = useState({
-    main: "-",
-    description: "-",
+    name: 'N/A',
+    country: 'N/A',
+    main: 'N/A',
     temp: 0,
+    humidity: 0,
+    pressure: 0,
   });
   return (
     <ImageBackground source={require("../bg.jpg")} style={styles.backdrop}>
